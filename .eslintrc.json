@@ -1,3 +1,50 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": ["simple-import-sort","sort-keys", "sort-keys-fix", "@typescript-eslint"],
+  "rules": {
+    "simple-import-sort/imports": "error",
+    "sort-keys": [
+      "error",
+      "asc",
+      { "caseSensitive": true, "natural": false, "minKeys": 2 }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // packages react realted packages comes first
+              ["^react", "^@?\\w"],
+              // Internal packages
+              ["^(@components)(/.*|$)"],
+              // Side effect imports
+              ["^\\u0000"],
+              // Parent imports. Put `..` last
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports
+              ["^.+\\.(css)$"]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "sort-keys-fix/sort-keys-fix": "warn",
+        "@typescript-eslint/no-unused-vars": "warn"
+      }
+    }
+  ]
+  // npm i --save-dev @typescript-eslint/eslint-plugin eslint-plugin-simple-import-sort eslint-plugin-sort-keys eslint-plugin-sort-keys-fix eslint-config-next eslint
+  // npm install --save-dev @typescript-eslint/eslint-plugin eslint-plugin-simple-import-sort eslint-plugin-sort-keys eslint-plugin-sort-keys-fix eslint-config-next prettier eslint-plugin-prettier eslint-config-prettier
+
+  // npx eslint --fix .
+
 }
