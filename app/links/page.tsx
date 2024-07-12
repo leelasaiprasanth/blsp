@@ -1,8 +1,8 @@
 import Image from "next/image";
-import avatar from "@/public/gallery/leelasaiprasanth.jpg";
 
 import ConnectLinks from "@/app/components/ConnectLinks";
 import Link from "@/app/components/Link";
+import avatar from "@/public/gallery/leelasaiprasanth.jpg";
 
 export default function Links() {
   return (

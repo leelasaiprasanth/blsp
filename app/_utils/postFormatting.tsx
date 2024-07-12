@@ -1,11 +1,11 @@
 
 import ReactDOMServer from "react-dom/server";
-import Link from "@/app/components/Link";
-
 import LinkifyIt from "linkify-it";
 import tlds from "tlds";
 
-const linkify = LinkifyIt();
+import Link from "@/app/components/Link";
+
+const linkify = new LinkifyIt();
 linkify.tlds(tlds);
 
 export function getContentWithLinks(content: string) {
